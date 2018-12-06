@@ -1,0 +1,13 @@
+#' Apply AR Coefficients
+#'
+#' Apply AR coefficients to one or multiple columns of an xts object
+#' in a rolling fashion.
+#'
+#' @param x An xts object
+#' @param coef Numeric vector of AR coefficients.
+#'             First element corresponds to AR1.
+#'
+rollAR <- function(x, coef){
+    coef <- rev(coef) # Reverse to make coef argument more intuitive
+    zoo::rollapply(x, width = length(coef), FUN = weighted.sum, w = coef)
+}

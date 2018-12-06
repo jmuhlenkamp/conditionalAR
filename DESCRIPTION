@@ -1,0 +1,18 @@
+Package: conditionalAR
+Title: Conditionally Evaluate Rolling Performance of AR Models
+Version: 0.0.0.9000
+Authors@R:
+    person(given = "Jason",
+           family = "Muhlenkamp",
+           role = c("aut", "cre"),
+           email = "jason.muhlenkamp@gmail.com")
+Description: Conditionally Evaluate Rolling Performance of AR Models.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    testthat
+RoxygenNote: 6.1.1
+Imports: 
+    xts,
+    zoo
