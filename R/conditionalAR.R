@@ -7,3 +7,6 @@
 #'
 #' @export rollAR
 #'
+"_PACKAGE"
+utils::globalVariables(c("index"
+))
