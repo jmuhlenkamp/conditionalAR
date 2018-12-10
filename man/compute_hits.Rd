@@ -5,12 +5,14 @@
 \title{Compute Hits
 Returns 1 TRUE if binary bet == sign(log growth).}
 \usage{
-compute_hits(data, x)
+compute_hits(data, x, position)
 }
 \arguments{
 \item{data}{An `xts` object containing log growths.}
 
 \item{x}{An `xts` object containing predictions.}
+
+\item{position}{Character vector passed to `compute_bets`}
 }
 \description{
 Compute Hits

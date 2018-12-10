@@ -3,46 +3,40 @@
 #' @param x An `xts` object containing predictions.
 #' @param position Character for whether to return \cr
 #'                 \itemize{
-#'                 \item "all" bets (-1, 0, 1 for all non-NA)
+#'                 \item All "longshort" bets (-1, 0, 1 for all non-NA)
 #'                 \item Only "long" bets (0, 1 for all non-NA)
 #'                 \item Only "short" bets (-1, 0 for all non-NA)
-#'                 \item n (1 for all non-NA obs)
+#'                 \item "alwayslong" (1 for all non-NA obs)
+#'                 \item "alwaysshort" (-1 for all non-NA obs)
 #'                 }
-compute_bets <- function (x, position = c("all", "long", "short", "n")) {
+compute_bets <- function (
+    x,
+    position = c("longshort", "long", "short", "alwayslong", "alwaysshort")
+) {
     position <- position[1]
     data <- xts::lag.xts(sign(x))
-    if (position == "all"){
+    if (position == "longshort"){
         return(data)
     } else if (position == "long"){
         return(base::pmax(data, 0))
     } else if (position == "short"){
         return(base::pmin(data, 0))
-    } else if (position == "n"){
+    } else if (position == "alwayslong"){
         return(base::pmin(data + 2, 1))
+    } else if (position == "alwaysshort"){
+        return(base::pmin(data - 2, 1))
     } else {
-        stop("position argument must be: all, long, short, or n")
+        stop("position argument must be:
+             all, long, short, alwayslong, or alwaysshort")
     }
 }
 #' Compute Hits
 #' Returns 1 TRUE if binary bet == sign(log growth).
 #' @param data An `xts` object containing log growths.
 #' @param x An `xts` object containing predictions.
-compute_hits <- function (data, x) {
-    compute_bets(x) == sign(data)
-}
-#' Compute Long Hits
-#' Returns 1 TRUE if binary bet == sign(log growth).
-#' @param data An `xts` object containing log growths.
-#' @param x An `xts` object containing predictions.
-compute_hits_long <- function (data, x) {
-    compute_bets_long(x) == sign(data)
-}
-#' Compute Short Hits
-#' Returns 1 TRUE if binary bet == sign(log growth).
-#' @param data An `xts` object containing log growths.
-#' @param x An `xts` object containing predictions.
-compute_hits_short <- function (data, x) {
-    compute_bets_short(x) == sign(data)
+#' @param position Character vector passed to `compute_bets`
+compute_hits <- function (data, x, position) {
+    compute_bets(x, position) == sign(data)
 }
 #' Compute Return
 #' Returns return based on bet.

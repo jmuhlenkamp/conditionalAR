@@ -6,6 +6,7 @@
 #' @import zoo
 #'
 #' @export compute_bets
+#' @export compute_hits
 #' @export lbapplyr
 #' @export rollAR
 #'
