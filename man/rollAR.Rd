@@ -16,3 +16,8 @@ First element corresponds to AR1.}
 Apply AR coefficients to one or multiple columns of an xts object
 in a rolling fashion.
 }
+\examples{
+# 10-day MA crossover
+growth <- diff(log(stocks))
+signal <- rollAR(growth, rep(1/9,9))
+}
