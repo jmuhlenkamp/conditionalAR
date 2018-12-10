@@ -8,6 +8,7 @@
 #' @export compute_bets
 #' @export compute_hits
 #' @export lbapplyr
+#' @export lbhitrate
 #' @export rollAR
 #'
 "_PACKAGE"

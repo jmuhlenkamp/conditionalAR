@@ -27,7 +27,7 @@ compute_bets <- function (
         return(base::pmin(data - 2, 1))
     } else {
         stop("position argument must be:
-             all, long, short, alwayslong, or alwaysshort")
+             longshort, long, short, alwayslong, or alwaysshort")
     }
 }
 #' Compute Hits
