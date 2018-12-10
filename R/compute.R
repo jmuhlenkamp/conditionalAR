@@ -1,20 +1,27 @@
 #' Compute Binary Bets
 #' Takes predictions and creates lagged -1, 0, 1 values based on sign.
 #' @param x An `xts` object containing predictions.
-compute_bets <- function (x) {
-    xts::lag.xts(sign(x))
-}
-#' Compute Binary Long Bets
-#' Takes predictions and creates lagged 0, 1 values based on sign.
-#' @param x An `xts` object containing predictions.
-compute_bets_long <- function (x) {
-    base::pmax(compute_bets(x), 0)
-}
-#' Compute Binary Short Bets
-#' Takes predictions and creates lagged -1, 0 values based on sign.
-#' @param x An `xts` object containing predictions.
-compute_bets_short <- function (x) {
-    base::pmin(compute_bets(x), 0)
+#' @param position Character for whether to return \cr
+#'                 \itemize{
+#'                 \item "all" bets (-1, 0, 1 for all non-NA)
+#'                 \item Only "long" bets (0, 1 for all non-NA)
+#'                 \item Only "short" bets (-1, 0 for all non-NA)
+#'                 \item n (1 for all non-NA obs)
+#'                 }
+compute_bets <- function (x, position = c("all", "long", "short", "n")) {
+    position <- position[1]
+    data <- xts::lag.xts(sign(x))
+    if (position == "all"){
+        return(data)
+    } else if (position == "long"){
+        return(base::pmax(data, 0))
+    } else if (position == "short"){
+        return(base::pmin(data, 0))
+    } else if (position == "n"){
+        return(base::pmin(data + 2, 1))
+    } else {
+        stop("position argument must be: all, long, short, or n")
+    }
 }
 #' Compute Hits
 #' Returns 1 TRUE if binary bet == sign(log growth).

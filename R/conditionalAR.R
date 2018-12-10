@@ -5,6 +5,8 @@
 #' @import xts
 #' @import zoo
 #'
+#' @export compute_bets
+#' @export lbapplyr
 #' @export rollAR
 #'
 "_PACKAGE"

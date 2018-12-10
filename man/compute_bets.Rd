@@ -5,10 +5,18 @@
 \title{Compute Binary Bets
 Takes predictions and creates lagged -1, 0, 1 values based on sign.}
 \usage{
-compute_bets(x)
+compute_bets(x, position = c("all", "long", "short", "n"))
 }
 \arguments{
 \item{x}{An `xts` object containing predictions.}
+
+\item{position}{Character for whether to return \cr
+\itemize{
+\item "all" bets (-1, 0, 1 for all non-NA)
+\item Only "long" bets (0, 1 for all non-NA)
+\item Only "short" bets (-1, 0 for all non-NA)
+\item n (1 for all non-NA obs)
+}}
 }
 \description{
 Compute Binary Bets
