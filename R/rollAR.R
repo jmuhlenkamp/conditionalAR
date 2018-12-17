@@ -13,5 +13,5 @@
 #' signal <- rollAR(growth, rep(1/9,9))
 rollAR <- function(x, coef){
     coef <- rev(coef) # Reverse to make coef argument more intuitive
-    zoo::rollapply(x, width = length(coef), FUN = weighted.sum, w = coef)
+    zoo::rollapplyr(x, width = length(coef), FUN = weighted.sum, w = coef)
 }
