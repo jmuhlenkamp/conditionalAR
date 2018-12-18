@@ -9,6 +9,8 @@
 #' @export compute_hits
 #' @export lbapplyr
 #' @export lbhitrate
+#' @export pmax.xts
+#' @export pmin.xts
 #' @export rollAR
 #' @export rollARens
 #' @export rollMAC
