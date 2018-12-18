@@ -10,6 +10,9 @@
 #' @export lbapplyr
 #' @export lbhitrate
 #' @export rollAR
+#' @export rollARens
+#' @export rollMAC
+#' @export transOMLS
 #'
 "_PACKAGE"
 utils::globalVariables(c("index"
