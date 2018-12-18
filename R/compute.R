@@ -14,7 +14,7 @@ compute_bets <- function (
     position = c("longshort", "long", "short", "alwayslong", "alwaysshort")
 ) {
     position <- position[1]
-    data <- xts::lag.xts(sign(x))
+    data <- xts::lag.xts(sign(x), na.pad = FALSE)
     if (position == "longshort"){
         return(data)
     } else if (position == "long"){
