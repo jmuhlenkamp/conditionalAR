@@ -1,6 +1,6 @@
 Package: conditionalAR
 Title: Conditionally Evaluate Rolling Performance of AR Models
-Version: 0.0.2.9000
+Version: 0.0.3
 Authors@R:
     person(given = "Jason",
            family = "Muhlenkamp",
